@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GSAPI - Feed By Google Sheet</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="image/sheet_json.png" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/sheet_json.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="image/sheet_json.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="image/sheet_json.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="image/sheet_json.png" />
+    <meta name="description" content="Get your Google Sheet data by JSON Object In a easy way, Need to prototype a App os Data Base faster, so here we are!">
+</head>
+<body>
+    <header>
+        GSAPI
+    </header>
+    <main>
+        <section class="input">
+            <div class="sheet_ico">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 48 48" width="100%" height="100%">
+                    <path fill="#43a047" d="M37 45H11c-2 0-3-1-3-3V6c0-2 1-3 3-3h19l10 10v29c0 2-1 3-3 3z"/>
+                    <path fill="#c8e6c9" d="M40 13H30V3z"/>
+                    <path fill="#2e7d32" d="M30 13l10 10V13z"/>
+                    <path fill="#e8f5e9" d="M31 23H15v14h18V23zm-14 2h4v2h-4zm0 4h4v2h-4zm0 4h4v2h-4zm14 2h-8v-2h8zm0-4h-8v-2h8zm0-4h-8v-2h8z"/>
+                </svg>
+            </div>
+            <div class="arrow_ico">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 280 280" width="100%" height="100%">
+                    <path d="M265 126l-80-80a13 13 0 0 0-18 17l59 59H13a13 13 0 0 0 0 25h213l-59 59a12 12 0 1 0 18 17l80-80c5-5 5-13 0-17z"/>
+                </svg>
+            </div>
+            <div class="json_ico">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 56 56" width="100%" height="100%">
+                    <path fill="#e9e9e0" d="M37 0H8L7 2v53l1 1h40l1-1V13v-1L38 0h-1z"/>
+                    <path fill="#d9d7ca" d="M38 0v12h11z"/>
+                    <path fill="#9777a8" d="M48 56H8l-1-1V39h43v16l-2 1z"/>
+                    <g fill="#fff">
+                        <path d="M17 43v9l-1 1h-1a6 6 0 0 1-2 0 6 6 0 0 1-1 0l-1-1 1-1a16 16 0 0 0 2 1l1-1v-8h2zM25 50v1l-1 1-1 1h-1a7 7 0 0 1-1 0h-1l-1-1 1-1 1 1h1l1-1 1-1-1-1c-1-1 0 0 0 0l-1-1h-1l-1-1-1-1 1-2c1-1 0 0 0 0l1-1h4v1h-1-1-1l-1 1v1l1 1h1l1 1 1 1v1zM35 48v2l-1 2-1 1h-2-2l-1-1-1-2v-2-2l1-2 1-1h4l1 1 1 2v2zm-4 4h1l1-1v-1-2-2-1l-1-1h-1-1l-1 1v1a7 7 0 0 0 0 4v1l1 1h1zM45 43v10h-2l-4-7v7h-2V43h2l4 7v-7h2z"/>
+                    </g>
+                    <g fill="#9777a8">
+                        <path d="M20 19v-4l1-1a1 1 0 1 0 0-2c-2 0-3 1-3 3v4l-2 2a1 1 0 1 0 0 2l2 2v4c0 2 1 3 3 3a1 1 0 1 0 0-2l-1-1v-4l-2-3 2-3z"/>
+                        <circle cx="28" cy="19" r="2"/>
+                        <path d="M40 21c-2 0-2-1-2-2v-4c0-2-2-3-3-3a1 1 0 1 0 0 2l1 1v4l1 3-2 3v5a1 1 0 1 0 0 2c1 0 3-1 3-3v-4c0-1 0-2 2-2a1 1 0 1 0 0-2zM28 24l-1 1v3a1 1 0 1 0 2 0v-3l-1-1z"/>
+                    </g>
+                </svg>
+            </div>
+            <br>
+            <input 
+            type="text" class="sheet_link" id="sheet_link" placeholder="Google Sheet Edit Link" />
+            <br>
+            <span class="example_link">use this link for example: <span>https://docs.google.com/spreadsheets/d/1GduheATo_uATu0uPgYzcfF5Toa1hGTwezZP7GYhmYbc/edit#gid=0</span></span>
+            <br>
+            <button class="btn_get_api" id="btn_get_api" >GET SHEET API</button>
+        </section>
+        
+        <section class="endpoints empty">
+            <span class="message">Enter your Google Sheet Link In Above Input</span>
+            <div class="loader">
+                <svg xmlns="http://www.w3.org/2000/svg" class="lds-double-ring" preserveAspectRatio="xMidYMid" style="background:0 0" viewBox="0 0 100 100" width="150">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#439f47" stroke-dasharray="63 63" stroke-linecap="round" stroke-width="3" transform="rotate(130 50 50)">
+                        <animateTransform attributeName="transform" begin="0s" calcMode="linear" dur="2.4s" keyTimes="0;1" repeatCount="indefinite" type="rotate" values="0 50 50;360 50 50"/>
+                    </circle>
+                    <circle cx="50" cy="50" r="36" fill="none" stroke="#9777a8" stroke-dasharray="57 57" stroke-dashoffset="57" stroke-linecap="round" stroke-width="3" transform="rotate(-130 50 50)">
+                        <animateTransform attributeName="transform" begin="0s" calcMode="linear" dur="2.4s" keyTimes="0;1" repeatCount="indefinite" type="rotate" values="0 50 50;-360 50 50"/>
+                    </circle>
+                </svg>
+            </div>
+            <article class="data">
+                
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>
+            Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+        </p>
+        <p>
+        <a class="issue" href="https://github.com/kelvinbiffi/GSAPI/issues/new" target="_blank">
+            NEW ISSUE
+        </a>
+        </p>
+    </footer>
+    
+    <script src="js/gsapi.js"></script>
+</body>
+</html>

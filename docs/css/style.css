@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-@import url('https://fonts.googleapis.com/css?family=Orbitron');
 
 
 html, body {
@@ -45,7 +44,7 @@ main section.input input.sheet_link{
   font-family: 'Roboto Mono', monospace;
   font-size: 16px;
   height: 25px;
-  padding: 5px 12px;
+  padding: 25px 12px;
   width: 90%;
   margin: 10px 0;
   text-align: center;
@@ -183,7 +182,7 @@ main section.endpoints.show .data .endpoint h2 .colapse::after {
   content: '+';
   font-size: 24px;
   display: inline-block;
-  font-family: 'Orbitron';
+  font-family: 'Roboto Mono', monospace;
   color: #333333;
   padding: 1px 10px;
 }
@@ -192,7 +191,7 @@ main section.endpoints.show .data .endpoint h2 .colapse::after {
 main section.endpoints.show .data .endpoint textarea {
   box-sizing: border-box;
   width: 100%;
-  font-family: 'Orbitron';
+  font-family: 'Roboto Mono', monospace;
   font-size: 0.8rem;
   line-height: 1.2;
   max-height: 0;
@@ -206,7 +205,7 @@ main section.endpoints.show .data .endpoint.expand h2 .colapse::after {
   content: '-';
   font-size: 18px;
   display: inline-block;
-  font-family: 'Orbitron';
+  font-family: 'Roboto Mono', monospace;
   color: #333333;
   padding: 5px;
 }

@@ -1,70 +1,107 @@
 (() => {
+    
+  const elements = {
+    colapse: '.endpoint .colapse',
+  };
+  
+  let cache = {};
+  
+  /**
+   * Get project contributors
+   */
+  const getContributors = () => {
+    fetch('https://api.github.com/repos/kelvinbiffi/GSAPI/contributors')
+    .then(response => response.json())
+    .then((data) => {
+      
+      data.forEach((user) => {
+        cache.listContributors.insertAdjacentHTML('beforeend', `
+          <li>
+            <img src="${user.avatar_url}" />
+            <a href="${user.html_url}" target="_blank">@${user.login}</a>
+          </li>
+        `);
+      });
+    })
+  };
+  
+  /**
+   * 
+   * @param {String} label 
+   * @param {String} link 
+   * @param {JSON} json 
+   */
+  const getEndpoint = (label, link, json) => {
+    cache.dataContent.insertAdjacentHTML('beforeend', `
+      <div class="endpoint">
+        <h2>${label}</h2>
+        <h2>${link} <span class="colapse"></span> </h2>
+        <textarea name="" id="myTextarea" cols="30" rows="30">
+          ${JSON.stringify(json, undefined, 4)}
+        </textarea>
+      </div>
+    `);
+  };
+    
+  /**
+   * Handle and show ENDPOINTS to Google Sheet
+   * 
+   * @param {JSON} data - JSON Returned API
+   * @param {String} api - Sheet Link
+   */
+  const handleEndpoints = (data, api) => {
+    
+    cache.dataContent.insertAdjacentHTML('beforeend', `
+      <h1>
+        Get you Google Sheet ENDPOINT Below =)
+      </h1>
+    `);
+    
+    getEndpoint('Get all data', api, data.data);
+    
+    Object.keys(data.data).forEach((table) => {
+      let link = `${api}/${table}`
+      let json = data.data[table];
+      getEndpoint(`Get only ${table} table data`, link, json);
+      
+      if (data.data[table].length > 0) {
+        link = `${api}/${table}/0`
+        json = data.data[table][0];
+        getEndpoint(`Get only 1 item from ${table} table`, link, json);
+        
+      }
+    });
+    
+    [].slice.call(document.querySelectorAll(elements.colapse)).forEach((el) => {
+      el.addEventListener('click', function (event) {
+        if ([].slice.call(event.target.parentElement.parentElement.classList).indexOf('expand') > -1) {
+          event.target.parentElement.parentElement.classList.remove('expand');
+        } else {
+          event.target.parentElement.parentElement.classList.add('expand');
+        }
+      });
+    });
+    
+  };
+  
+  /**
+   * Init code
+   */
   const init = () => {
     
-    const elements = {
-      colapse: '.endpoint .colapse',
-    };
-    
-    const cache = {
+    /**
+     * Cache DOM Elements
+     */
+    cache = {
       sheetLink: document.querySelector('.sheet_link'),
       btnGetApi: document.querySelector('.btn_get_api'),
       endpointsSection: document.querySelector('section.endpoints'),
       endpointsSectionMessage: document.querySelector('section.endpoints .message'),
       dataContent: document.querySelector('section.endpoints .data'),
-    }
-    
-    const getEndpoint = (label, link, json) => {
-      cache.dataContent.insertAdjacentHTML('beforeend', `
-        <div class="endpoint">
-          <h2>${label}</h2>
-          <h2>${link} <span class="colapse"></span> </h2>
-          <textarea name="" id="myTextarea" cols="30" rows="30">
-            ${JSON.stringify(json, undefined, 4)}
-          </textarea>
-        </div>
-      `);
+      listContributors: document.querySelector('footer .contributors'),
     };
     
-    /**
-     * Handle and show ENDPOINTS to Google Sheet
-     * 
-     * @param JSON data - JSON Returned API
-     * @param String api - Sheet Link
-     */
-    const handleEndpoints = (data, api) => {
-      
-      cache.dataContent.insertAdjacentHTML('beforeend', `
-        <h1>
-          Get you Google Sheet ENDPOINT Below =)
-        </h1>
-      `);
-      
-      getEndpoint('Get all data', api, data.data);
-      
-      Object.keys(data.data).forEach((table) => {
-        let link = `${api}/${table}`
-        let json = data.data[table];
-        getEndpoint(`Get only ${table} table data`, link, json);
-        
-        if (data.data[table].length > 0) {
-          link = `${api}/${table}/0`
-          json = data.data[table][0];
-          getEndpoint(`Get only 1 item from ${table} table`, link, json);
-          
-        }
-      });
-      
-      [].slice.call(document.querySelectorAll(elements.colapse)).forEach((el) => {
-        el.addEventListener('click', function (event) {
-          if ([].slice.call(event.target.parentElement.parentElement.classList).indexOf('expand') > -1) {
-            event.target.parentElement.parentElement.classList.remove('expand');
-          } else {
-            event.target.parentElement.parentElement.classList.add('expand');
-          }
-        });
-      });
-      
-    };
+    getContributors();
     
     /**
      * Click Button Get API ENDPOONTS
@@ -105,7 +142,7 @@
           }
           
           cache.endpointsSection.classList.remove('load');
-        })
+        });
       }
     });
   };

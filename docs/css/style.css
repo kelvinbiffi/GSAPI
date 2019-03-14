@@ -224,6 +224,38 @@ footer {
   background-color: #F2F2F2;
   text-align: center;
 }
+footer h3 {
+  font-size: 25px;
+  font-family: 'Roboto Mono', monospace;
+  color: #333333;
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+footer .contributors {
+  padding: 0;
+}
+
+footer .contributors li {
+  display: inline-block;
+}
+
+footer .contributors li img {
+  display: inline-block;
+  width: 40px;
+  border-radius: 100px;
+  line-height: 40px;
+  vertical-align: top;
+}
+
+footer .contributors li a {
+  display: inline-block;
+  font-size: 18px;
+  font-family: 'Roboto Mono', monospace;
+  color: #e91e63;
+  line-height: 40px;
+  vertical-align: top;
+}
   
 footer p {
   color: #333333;

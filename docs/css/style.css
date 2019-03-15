@@ -28,6 +28,30 @@ main section.input {
   
 }
 
+main section.input p {
+  padding: 20px;
+  color: #333333;
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 18px;
+}
+
+main section.input .example_link {
+  color: #333333;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+  word-break: break-all;
+  width: 90%;
+  padding: 0 20px;
+  margin-bottom: 40px;
+  display: inline-block;
+}
+
+main section.input .example_link a {
+  color: #333333;
+  text-decoration: underline;
+}
+
 main section.input .sheet_ico,
 main section.input .arrow_ico,
 main section.input .json_ico {
@@ -49,20 +73,6 @@ main section.input input.sheet_link{
   margin: 10px 0;
   text-align: center;
   outline: none;
-}
-
-main section.input .example_link {
-  color: #333333;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 12px;
-  word-break: break-all;
-  width: 90%;
-  padding: 0 20px;
-}
-
-main section.input .example_link span {
-  color: #333333;
-  text-decoration: underline;
 }
 
 main section.input button.btn_get_api {
@@ -187,6 +197,9 @@ main section.endpoints.show .data .endpoint h2 .colapse::after {
   padding: 1px 10px;
 }
 
+main section.endpoints.show .data .endpoint h2 b {
+  color: #333333;
+}
 
 main section.endpoints.show .data .endpoint textarea {
   box-sizing: border-box;

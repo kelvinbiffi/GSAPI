@@ -53,21 +53,21 @@
     
     cache.dataContent.insertAdjacentHTML('beforeend', `
       <h1>
-        Get you Google Sheet ENDPOINT Below =)
+        Get you Google Sheet ENDPOINTs Below =)
       </h1>
     `);
     
-    getEndpoint('Get all data', api, data.data);
+    getEndpoint('Get <b>all data</b>', api, data.data);
     
     Object.keys(data.data).forEach((table) => {
       let link = `${api}/${table}`
       let json = data.data[table];
-      getEndpoint(`Get only ${table} table data`, link, json);
+      getEndpoint(`Get only <b>${table}</b> table data`, link, json);
       
       if (data.data[table].length > 0) {
         link = `${api}/${table}/0`
         json = data.data[table][0];
-        getEndpoint(`Get only 1 item from ${table} table`, link, json);
+        getEndpoint(`Get only <b>1</b> item from <b>${table}</b> table`, link, json);
         
       }
     });

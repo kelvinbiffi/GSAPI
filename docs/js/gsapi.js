@@ -2,6 +2,7 @@
     
   const elements = {
     colapse: '.endpoint .colapse',
+    copy: '.endpoint .copy',
   };
   
   let cache = {};
@@ -35,7 +36,17 @@
     cache.dataContent.insertAdjacentHTML('beforeend', `
       <div class="endpoint">
         <h2>${label}</h2>
-        <h2>${link} <span class="colapse"></span> </h2>
+        <h2>
+          <span class="copy" title="Copy sa text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+              <path fill="none" d="M0 0h24v24H0z"/>
+              <path d="M16 1H4L2 3v14h2V3h12V1zm-1 4l6 6v10l-2 2H8l-2-2V7l2-2h7zm-1 7h6l-6-5v5z"/>
+            </svg>
+          
+            <input type="text" value="${link}" readonly />
+            <a>${link}</a>
+          </span>
+          <span class="colapse"></span> </h2>
         <textarea name="" id="myTextarea" cols="30" rows="30">
           ${JSON.stringify(json, undefined, 4)}
         </textarea>
@@ -72,6 +83,7 @@
       }
     });
     
+    // Bind expand events
     [].slice.call(document.querySelectorAll(elements.colapse)).forEach((el) => {
       el.addEventListener('click', function (event) {
         if ([].slice.call(event.target.parentElement.parentElement.classList).indexOf('expand') > -1) {
@@ -79,6 +91,23 @@
         } else {
           event.target.parentElement.parentElement.classList.add('expand');
         }
+      });
+    });
+    
+    // Bind copy events
+    [].slice.call(document.querySelectorAll(elements.copy)).forEach((el) => {
+      el.addEventListener('click', function (event) {
+        cache.copyFeedback.classList.remove('show');
+        
+        const input = event.currentTarget.querySelector('input');
+        input.select();
+        document.execCommand('copy');
+        
+        cache.copyFeedback.classList.add('show');
+        
+        setTimeout(() => {
+          cache.copyFeedback.classList.remove('show');
+        }, 2000);
       });
     });
     
@@ -93,12 +122,14 @@
      * Cache DOM Elements
      */
     cache = {
+      body: 'body',
       sheetLink: document.querySelector('.sheet_link'),
       btnGetApi: document.querySelector('.btn_get_api'),
       endpointsSection: document.querySelector('section.endpoints'),
       endpointsSectionMessage: document.querySelector('section.endpoints .message'),
       dataContent: document.querySelector('section.endpoints .data'),
       listContributors: document.querySelector('footer .contributors'),
+      copyFeedback: document.querySelector('.copy-feedback'),
     };
     
     getContributors();

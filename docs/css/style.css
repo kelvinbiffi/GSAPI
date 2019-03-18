@@ -147,6 +147,26 @@ main section.endpoints.load {
 }
 
 /* ENDPOINTS */
+main .copy-feedback {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  padding: 5px 15px;
+  background: #888888;
+  color: #FFFFFF;
+  border-radius: 50px;
+  width: 290px;
+  text-align: center;
+  margin: auto;
+  font-family: 'Roboto Mono', monospace;
+  display: none;
+}
+
+main .copy-feedback.show {
+  display: block;
+}
+
 main section.endpoints .data {
   display: none;
   padding: 60px 20px;
@@ -177,11 +197,22 @@ main section.endpoints.show .data .endpoint h2:first-child {
   font-size: 18px;
 }
 
-main section.endpoints.show .data .endpoint h2 {
+main section.endpoints.show .data .endpoint h2 span.copy {
+  width: 20px;
+  vertical-align: sub;
+  cursor: pointer;
+}
+
+main section.endpoints.show .data .endpoint h2, main section.endpoints.show .data .endpoint h2 a {
   font-size: 12px;
   font-family: 'Roboto Mono', monospace;
   color: #e91e63;
   word-break: break-all;
+}
+
+main section.endpoints.show .data .endpoint h2 input {
+  position: absolute;
+  margin-left: -999999px;
 }
 
 main section.endpoints.show .data .endpoint h2 .colapse {

@@ -12,7 +12,8 @@ This API was created to aid in the prototyping of Apps and Database Structures i
 If you have some issue visit this [DemoSheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vSuW-ikgJP4hp8fBL3aTvFLURuRirO0hMFp6y6S0n0zymKVoO5_PikciEjFyvjqM7IE-w_6u4H64ZhF/pubhtml) for getting an example
 
 After these steps will need to publish the Google Sheet on the Web.
-Click in File > Publish to the web... > click Publish button
+Click in File > Publish to the web... > click Publish button, like the image below
+![Publish on the web](pub_web_eg.jpg)
 
 ## Usage
 
